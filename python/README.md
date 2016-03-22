@@ -1,7 +1,8 @@
 # Run:
 ```
-python3 insertion_sort.py 7 2 0 ... 9
+python3 <file.py>
 ```
+to show how to use it
 
 # Run tests:
 ```
