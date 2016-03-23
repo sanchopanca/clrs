@@ -1,20 +1,23 @@
-def merge(a, b):
+def merge(a, left, pivot, right):
     """
-    :param a: the first list to merge
-    :param b: the second list to merge
-    :return: merged list
+    :param a: the list
+    :param left: left edge (including)
+    :param pivot: the pivot
+    :param right: right edge (excluding)
     """
-    result = []
+    first = a[left:pivot]
+    second = a[pivot:right]
     i, j = 0, 0
-    while i < len(a) and j < len(b):
-        if a[i] < b[j]:
-            result.append(a[i])
+    while i < len(first) and j < len(second):
+        if first[i] < second[j]:
+            a[left + i + j] = first[i]
             i += 1
         else:
-            result.append(b[j])
+            a[left + i + j] = second[j]
             j += 1
-    if i < len(a):
-        result.extend(a[i:])
-    elif j < len(b):
-        result.extend(b[j:])
-    return result
+    if i < len(first):
+        for k in range(i, len(first)):
+            a[left + k + j] = first[k]
+    elif j < len(second):
+        for k in range(j, len(second)):
+            a[left + i + k] = second[k]

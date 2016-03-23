@@ -16,14 +16,17 @@ def insertion_sort(a):
 
 def merge_sort(a):
     """
-    :param a: list which will should be sorted
-    :return: sorted list
+    :param a: list which will be sorted in-place
     """
-    if len(a) < 2:
-        return a
-    first_sorted_half = merge_sort(a[:len(a) // 2])
-    second_sorted_half = merge_sort(a[len(a) // 2:])
-    return merge(first_sorted_half, second_sorted_half)
+    def _merge_sort(a, left, right):
+        if right - left < 2:
+            return
+        pivot = (right + left) // 2
+        _merge_sort(a, left, pivot)
+        _merge_sort(a, pivot, right)
+        merge(a, left, pivot, right)
+
+    _merge_sort(a, 0, len(a))
 
 if __name__ == '__main__':
     import sys

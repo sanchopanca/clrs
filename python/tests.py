@@ -5,7 +5,7 @@ import sort
 import utils
 
 
-class TestInsertionSort(unittest.TestCase):
+class TestSort(unittest.TestCase):
     def setUp(self):
         random.seed('CLRS')
 
@@ -19,34 +19,41 @@ class TestInsertionSort(unittest.TestCase):
             self.assertEqual(a, s)
 
     def test_merge_sort_random(self):
-        for i in range(101):
+        for i in range(4):
             a = []
             for _ in range(i):
                 a.append(random.randint(1, 10000))
             s = sorted(a)
-            self.assertEqual(sort.merge_sort(a), s)
+            sort.merge_sort(a)
+            self.assertEqual(a, s)
 
     def test_merge(self):
-        merged = utils.merge([1, 2, 3, 4], [5, 6, 7, 8])
+        l = [1, 2, 3, 4, 5, 6, 7, 8]
+        utils.merge(l, 0, 4, 8)
         expected = [1, 2, 3, 4, 5, 6, 7, 8]
-        self.assertEqual(merged, expected)
+        self.assertEqual(l, expected)
 
-        merged = utils.merge([], [])
+        l = []
+        utils.merge(l, 0, 0, 0)
         expected = []
-        self.assertEqual(merged, expected)
+        self.assertEqual(l, expected)
 
-        merged = utils.merge([1, 2, 3], [])
+        l = [1, 2, 3]
+        utils.merge(l, 0, 3, 3)
         expected = [1, 2, 3]
-        self.assertEqual(merged, expected)
+        self.assertEqual(l, expected)
 
-        merged = utils.merge([], [1, 2, 3])
+        l = [1, 2, 3]
+        utils.merge(l, 0, 0, 3)
         expected = [1, 2, 3]
-        self.assertEqual(merged, expected)
+        self.assertEqual(l, expected)
 
-        merged = utils.merge([1, 3, 5, 7, 9], [0, 2, 4, 6, 8])
+        l = [1, 3, 5, 7, 9, 0, 2, 4, 6, 8]
+        utils.merge(l, 0, 5, 10)
         expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        self.assertEqual(merged, expected)
+        self.assertEqual(l, expected)
 
-        merged = utils.merge([1, 4, 9], [8])
+        l = [1, 4, 9, 8]
+        utils.merge(l, 0, 3, 4)
         expected = [1, 4, 8, 9]
-        self.assertEqual(merged, expected)
+        self.assertEqual(l, expected)
