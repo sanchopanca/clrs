@@ -21,3 +21,13 @@ def merge(a, left, pivot, right):
     elif j < len(second):
         for k in range(j, len(second)):
             a[left + i + k] = second[k]
+
+
+def matrix_addition(a, b):
+    c = []
+    for i in range(len(a)):
+        c.append([0] * len(a[0]))
+    for i in range(len(a)):
+        for j in range(len(a[0])):
+            c[i][j] = a[i][j] + b[i][j]
+    return c
